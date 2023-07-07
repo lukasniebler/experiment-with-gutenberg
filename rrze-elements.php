@@ -98,6 +98,16 @@ function deactivation()
 }
 
 /**
+ * Register Block
+ *
+ * @return void
+ */
+function rrze_rrze_elements_block_init() {
+    register_block_type( __DIR__ . '/build/accordion');
+    register_block_type( __DIR__ . '/build/collapse');
+}
+
+/**
  * [loaded description]
  * @return void
  */
@@ -117,5 +127,6 @@ function loaded()
         });
     } else {
         new Main(__FILE__);
+        add_action( 'init', 'RRZE\Elements\rrze_rrze_elements_block_init' );
     }
 }

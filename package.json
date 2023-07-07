@@ -2,10 +2,16 @@
   "name": "rrze-elements",
   "version": "1.25.10",
   "description": "RRZE Elements: Gestalterische Erweiterungen für Webauftritte.",
-  "main": "rrze-elements.php",
+	"main": "build/index.js",
   "textdomain": "rrze-elements",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "build": "wp-scripts build",
+      "format": "wp-scripts format",
+      "lint:css": "wp-scripts lint-style",
+      "lint:js": "wp-scripts lint-js",
+      "packages-update": "wp-scripts packages-update",
+      "plugin-zip": "wp-scripts plugin-zip",
+      "start": "wp-scripts start"    
   },
   "repository": {
     "type": "git",
@@ -27,19 +33,20 @@
   },
   "license": "GNU General Public License v3",
   "devDependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "autoprefixer": "^9.8.5",
+    "@wordpress/scripts": "^26.7.0",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "autoprefixer": "^10.4.14",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-bump": "^3.2.0",
     "gulp-clean-css": "^4.3.0",
-    "gulp-csso": "^3.0.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-sass": "^4.1.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
     "gulp-touch-cmd": "0.0.1",
     "gulp-uglify": "^3.0.2",
-    "gulp-wp-pot": "^2.4.3",
-    "semver": "^6.3.0"
+    "gulp-wp-pot": "^2.5.0",
+    "semver": "^7.5.3"
   }
 }
