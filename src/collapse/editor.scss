@@ -356,3 +356,19 @@
 	.admin-bar #content main .accordion-body:target {
 		padding-top: 0;
 	}
+
+	.accordion-body {
+		height: 0;
+		overflow: hidden;
+		transition: height 0.5s ease-in-out;
+		margin-top: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+	  }
+	  
+	  .accordion-body.active {
+		height: auto; /* Change this to a specific height if needed */
+		margin-top: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	  }
