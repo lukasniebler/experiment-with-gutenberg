@@ -24,6 +24,10 @@
     "register": {
       "type": "boolean",
       "default": false
+    },
+    "sameBlockCount": {
+      "type": "integer",
+      "default": 0
     }
   },
   "supports": {

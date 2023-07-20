@@ -33,6 +33,20 @@
 		"register": {
 			"type": "boolean",
 			"default": false
+		},
+		"sameBlockCount": {
+			"type": "integer",
+			"default": 0
+		},
+		"title": {
+			"type": "string",
+			"source": "html",
+			"selector": "button",
+			"default": "Enter your Title"
+		},
+		"color": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

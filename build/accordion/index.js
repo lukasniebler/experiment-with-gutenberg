@@ -9,9 +9,6 @@
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ Edit; }
-/* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
@@ -21,6 +18,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__);
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -29,19 +28,54 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
+
 function Edit(_ref) {
   var blockProps = _ref.blockProps,
     attributes = _ref.attributes,
-    setAttributes = _ref.setAttributes;
+    selectedBlock = _ref.selectedBlock,
+    setAttributes = _ref.setAttributes,
+    blockParents = _ref.blockParents;
   var props = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)();
+  var sameBlockCount = attributes.sameBlockCount;
+
+  // let sameTypeSiblingsBefore = 0;
+  // if (selectedBlock && blockParents.length > 0) {
+  //   for (const block of siblingBlocks) {
+  //     if (block.clientId === selectedBlock.clientId) {
+  //       break;
+  //     }
+  //     if (block.name === selectedBlock.name) {
+  //       sameTypeSiblingsBefore++;
+  //     }
+  //   }
+  //   if (sameTypeSiblingsBefore !== attributes.sameBlockCount) {
+  //     setAttributes({ sameBlockCount: sameTypeSiblingsBefore });
+  //   }
+  // }
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", _objectSpread({}, props), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "accordion",
-    id: "accordion-1"
+    id: "accordion-"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks, {
     allowedBlocks: ['rrze-elements/accordion'],
     template: [['rrze-elements/collapse', {}], ['rrze-elements/collapse', {}]]
   }))));
 }
+/* harmony default export */ __webpack_exports__["default"] = ((0,_wordpress_data__WEBPACK_IMPORTED_MODULE_5__.withSelect)(function (select, ownProps) {
+  var _select = select("core/block-editor"),
+    getBlock = _select.getBlock,
+    getBlockParents = _select.getBlockParents,
+    getBlocks = _select.getBlocks,
+    getBlockIndex = _select.getBlockIndex;
+  var selectedBlockClientId = ownProps.clientId;
+  console.log(ownProps);
+  var blockIndex = getBlockIndex(selectedBlockClientId);
+  console.log(blockIndex);
+  return {
+    selectedBlock: getBlock(selectedBlockClientId),
+    blockIndex: blockIndex
+  };
+})(Edit));
 
 /***/ }),
 
@@ -133,9 +167,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function save(_ref) {
   var attributes = _ref.attributes;
   var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save();
+  var sameBlockCount = attributes.sameBlockCount;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", _objectSpread({}, blockProps), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "accordion",
-    id: "accordion-1"
+    id: "accordion-".concat(sameBlockCount)
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks.Content, null))));
 }
 
@@ -192,6 +227,16 @@ module.exports = window["wp"]["blocks"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["data"];
 
 /***/ }),
 
@@ -318,7 +363,7 @@ function _typeof(obj) {
   \**********************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"rrze-elements/accordion","version":"1.25.10","title":"Accordion","category":"design","icon":"align-center","description":"Creates an accordion block","attributes":{"message":{"type":"string","source":"text","selector":"div"},"expandAllLink":{"type":"boolean","default":false},"hstart":{"type":"integer","default":2},"register":{"type":"boolean","default":false}},"supports":{"html":false},"textdomain":"rrze-elements","editorScript":"file:./index.js","script":"rrze-accordions","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"rrze-elements/accordion","version":"1.25.10","title":"Accordion","category":"design","icon":"align-center","description":"Creates an accordion block","attributes":{"message":{"type":"string","source":"text","selector":"div"},"expandAllLink":{"type":"boolean","default":false},"hstart":{"type":"integer","default":2},"register":{"type":"boolean","default":false},"sameBlockCount":{"type":"integer","default":0}},"supports":{"html":false},"textdomain":"rrze-elements","editorScript":"file:./index.js","script":"rrze-accordions","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 
